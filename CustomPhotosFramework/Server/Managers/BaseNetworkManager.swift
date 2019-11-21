@@ -2,14 +2,14 @@ import Foundation
 import Moya
 import Result
 
-enum ServerResult<T> {
+public enum ServerResult<T> {
     case success(T)
     case failure(String)
 }
 
-class BaseNetworkManager {
+public class BaseNetworkManager {
     
-    func parse<T: Codable>(result: Result<Moya.Response, MoyaError>, completion: @escaping (ServerResult<T>) -> Void) {
+    public func parse<T: Codable>(result: Result<Moya.Response, MoyaError>, completion: @escaping (ServerResult<T>) -> Void) {
         switch result {
         case .success(let response):
             do {

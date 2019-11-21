@@ -1,9 +1,9 @@
 import Foundation
 
-class SearchPhotosResponse: Codable {
-    let total: Int
-    let totalPages: Int
-    let results: [PhotoModel]
+public class SearchPhotosResponse: Codable {
+    public let total: Int
+    public let totalPages: Int
+    public let results: [PhotoModel]
     
     enum CodingKeys: String, CodingKey {
         case total

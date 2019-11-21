@@ -1,11 +1,11 @@
 import Foundation
 import Moya
 
-class PhotosNetworkManagerConfiguration: NSObject {
-    var accessKey: String!
-    var baseUrl: String!
+public class PhotosNetworkManagerConfiguration: NSObject {
+    public var accessKey: String!
+    public var baseUrl: String!
     
-    static let shared = PhotosNetworkManagerConfiguration()
+    public static let shared = PhotosNetworkManagerConfiguration()
 
     private override init() {
         super.init()
@@ -13,11 +13,15 @@ class PhotosNetworkManagerConfiguration: NSObject {
     
 }
 
-class PhotosNetworkManager: BaseNetworkManager {
+public class PhotosNetworkManager: BaseNetworkManager {
+    
+    public override init() {
+        super.init()
+    }
     
     fileprivate var provider = MoyaProvider<PhotosAPI>(plugins: [NetworkLoggerPlugin(verbose: true)])
 
-    func getPhotos(page: Int = 1, perPage: Int = 30, completion: @escaping (ServerResult<[PhotoModel]>) -> Void) {
+    public func getPhotos(page: Int = 1, perPage: Int = 30, completion: @escaping (ServerResult<[PhotoModel]>) -> Void) {
         let target = PhotosAPI.getPhotos(page: page, perPage: perPage)
         DispatchQueue.global().async {
             self.provider.request(target) { (result) in
@@ -26,7 +30,7 @@ class PhotosNetworkManager: BaseNetworkManager {
         }
     }
     
-    func searchPhotos(query: String, page: Int = 1, perPage: Int = 30, completion: @escaping (ServerResult<SearchPhotosResponse>) -> Void) {
+    public func searchPhotos(query: String, page: Int = 1, perPage: Int = 30, completion: @escaping (ServerResult<SearchPhotosResponse>) -> Void) {
         let target = PhotosAPI.searchPhotos(query: query, page: page, perPage: perPage)
         DispatchQueue.global().async {
             self.provider.request(target) { (result) in

@@ -1,19 +1,19 @@
 import Foundation
 
-class PhotoModel: Codable {
+public class PhotoModel: Codable {
     
-    class UrlsModel: Codable {
-        let raw: String
-        let full: String
-        let regular: String
-        let small: String
-        let thumb: String
+    public class UrlsModel: Codable {
+        public let raw: String
+        public let full: String
+        public let regular: String
+        public let small: String
+        public let thumb: String
     }
 
-    let id: String
-    let height: Int
-    let width: Int
-    let urls: UrlsModel
+    public let id: String
+    public let height: Int
+    public let width: Int
+    public let urls: UrlsModel
 
 }
 
